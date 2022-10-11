@@ -23,6 +23,7 @@ jobs:
           python -m pip install --upgrade pip
       - name: Run Tests
         run: |
+          cd ./django_server
           python manage.py test
 
       - name: Log in to Docker Hub
