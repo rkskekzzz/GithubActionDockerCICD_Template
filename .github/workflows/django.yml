@@ -24,7 +24,7 @@ jobs:
           python -m pip install Django
       - name: Run Tests
         run: |
-          cd ./django_server
+          # cd ./django_server
           python manage.py test
       - name: Set up Docker Buildx
         id: buildx
