@@ -10,6 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Test Secret Access
+        run: |
+          ${{ secrets.secrets.DOCKER_USERNAME }} > ./test.txt
+          cat ./test.txt
+    steps:
       - name: Access to Lightsail
         run: echo "${{ secrets.LIGHTSAIL_ACCESS_KEY }}" > ./accesskey.pem
       - name: Change Access Key Permission
