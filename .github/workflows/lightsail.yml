@@ -13,4 +13,8 @@ jobs:
       - name: Change Access Key Permission
         run: chmod 600 ./accesskey.pem
       - name: Connect to Lightsail
-        run: ssh -i ./accesskey.pem ubuntu@${{ secrets.LIGHTSAIL_IP }} "sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest && sudo docker run -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}"
+        run: |
+          ssh -i ./accesskey.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.LIGHTSAIL_IP }} << EOF
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest
+          sudo docker run -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}
+          EOF
