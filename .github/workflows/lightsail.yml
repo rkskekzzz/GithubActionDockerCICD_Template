@@ -1,8 +1,10 @@
 name: Lightsail Auto Deploy
 
 on:
-  push:
-    branches: ['main']
+  workflow_run:
+    workflows: [Django CI / CD]
+    types:
+      - completed
 
 jobs:
   build:
