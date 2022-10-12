@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Access to Lightsail
-        run: echo ${{ secrets.LIGHTSAIL_ACCESS_KEY }} > accesskey.pem
+        run: cat ${{ secrets.LIGHTSAIL_ACCESS_KEY }} > ./accesskey.pem
       - name: Change Access Key Permission
         run: chmod 600 ./accesskey.pem
       - name: Connect to Lightsail
