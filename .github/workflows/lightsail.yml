@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Access to Lightsail
         run: |
-          ${{ secrets.LIGHTSAIL_ACCESS_KEY }} > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh -i ~/.ssh/id_rsa ubuntu@${{ secrets.LIGHTSAIL_IP }} "sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest && sudo docker run -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}"
+          ${{ secrets.LIGHTSAIL_ACCESS_KEY }} > ~/.ssh/accesskey.pem
+          chmod 600 ~/.ssh/accesskey.pem
+          ssh -i ~/.ssh/accesskey.pem ubuntu@${{ secrets.LIGHTSAIL_IP }} "sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest && sudo docker run -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}"
