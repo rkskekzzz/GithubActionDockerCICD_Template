@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Access to Lightsail
         run: echo "${{ secrets.LIGHTSAIL_ACCESS_KEY }}" > ./accesskey.pem
