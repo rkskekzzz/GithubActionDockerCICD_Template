@@ -10,7 +10,8 @@ jobs:
 
     steps:
       - name: Access to Lightsail
-        run: |
-          echo ${{ secrets.LIGHTSAIL_ACCESS_KEY }} > ~/.ssh/accesskey.pem
-          chmod 600 ~/.ssh/accesskey.pem
-          ssh -i ~/.ssh/accesskey.pem ubuntu@${{ secrets.LIGHTSAIL_IP }} "sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest && sudo docker run -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}"
+        run: echo ${{ secrets.LIGHTSAIL_ACCESS_KEY }} > ~/.ssh/accesskey.pem
+      - name: Change Access Key Permission
+        run: chmod 600 ~/.ssh/accesskey.pem
+      - name: Connect to Lightsail
+        run: ssh -i ~/.ssh/accesskey.pem ubuntu@${{ secrets.LIGHTSAIL_IP }} "sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest && sudo docker run -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}"
