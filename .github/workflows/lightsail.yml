@@ -17,7 +17,7 @@ jobs:
         run: chmod 600 ./accesskey.pem
       - name: Connect to Lightsail
         run: |
-          ssh -i ./accesskey.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.LIGHTSAIL_IP }} "\
+          ssh -i ./accesskey.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.LIGHTSAIL_IP }} " \
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest \
           && sudo docker stop backend \
           && sudo docker rm backend \
