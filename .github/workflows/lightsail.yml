@@ -22,4 +22,5 @@ jobs:
           && sudo docker stop backend \
           && sudo docker rm backend \
           && sudo docker run -d --name backend -p ${{ secrets.DOCKER_PORT }}:${{ secrets.DOCKER_PORT }} ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest \
+          && sudo docker rmi $(docker images --filter "dangling=true" -q --no-trunc) \
           && exit"
