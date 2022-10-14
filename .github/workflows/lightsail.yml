@@ -21,5 +21,5 @@ jobs:
           sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest \
           && sudo docker stop backend \
           && sudo docker rm backend \
-          && sudo docker run -d --name backend -p ${{ secrets.DOCKER_PORT }}:${{ secrets.DOCKER_PORT }}:latest \
+          && sudo docker run -d --name backend -p ${{ secrets.DOCKER_PORT }}:${{ secrets.DOCKER_PORT }} ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest \
           && exit"
