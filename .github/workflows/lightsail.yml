@@ -17,4 +17,4 @@ jobs:
         run: chmod 600 ./accesskey.pem
       - name: Connect to Lightsail
         run: |
-          ssh -i ./accesskey.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.LIGHTSAIL_IP }} "sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest && sudo docker run -d ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }} && sudo docker ps -a && exit"
+          ssh -i ./accesskey.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.LIGHTSAIL_IP }} "sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:latest && sudo docker run -d -p ${{ secrets.DOCKER_PORT }}:${{ secrets.DOCKER_PORT }} &&  ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}  && exit"
